@@ -9,7 +9,7 @@ Open `index.html` in a modern browser, or enable GitHub Pages for the repository
 ## Phase 1–3 features
 
 - Infinite-feeling pan/zoom canvas with grid and snap controls
-- Compact, searchable component library with logic, I/O, mechanical, electrical, sensor, structure, and computing categories
+- Compact, searchable component library with logic, I/O, mechanical, sensor, structure, and computing categories
 - Refined inspector with clearer empty, single-selection, and multi-selection states
 - Mobile slide-out component browser and inspector
 - Component placement, selection, multi-selection, move, rotate, delete

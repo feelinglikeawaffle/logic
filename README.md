@@ -148,3 +148,15 @@ The physics toggle and connector settings are stored with project objects and jo
 For a launcher, connect SWITCH OUT to ROCKET LAUNCHER TRIGGER and press Play. Toggle the switch off and on again to fire another rocket.
 
 The solver remains a lightweight 2D approximation. Motor-shaft links, rope tension, spring forces, and collisions are intended for sandbox building rather than precision engineering simulation.
+
+
+## Phase 9 — universal physical attachment nodes
+
+- Physical parts can be joined at named mounting nodes instead of only at their centers. Select two parts and choose a node for each endpoint: center, top, right, bottom, left, or one of the four corners.
+- The chosen local attachment points rotate with their components. Springs and ropes now measure their length between those exact points, so attaching a spring to the end of a beam pulls on the beam at that end rather than at its center.
+- Spring forces include an approximate turning effect when applied away from a part's center of mass. Rope tension is applied only when the rope is stretched; slack rope does not push.
+- Added a rigid link / strut connector that maintains a fixed distance between its two mounting nodes. It behaves as a two-ended structural member, unlike a rope (tension only) or spring (push and pull).
+- Existing hinge, weld, rope, spring, and motor-shaft joints remain supported. PIN and ANCHOR parts can be used as fixed attachment endpoints; BEAM remains a physical structural member that can be connected at its ends.
+- Connector and attachment settings are stored in project data and continue to work with local autosave and JSON export.
+
+The solver remains an approximate 2D sandbox solver. Attachment points and force transfer are improved, but this is not a finite-element or precision multibody simulation.

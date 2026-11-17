@@ -53,19 +53,49 @@ Phase 3 adds a lightweight 2D rigid-body layer for construction experiments. It 
 
 Projects and blueprints are stored locally in the browser. Export JSON files to back up or move work between browsers.
 
-## Phase 4 — component behaviors and machine interaction
+## Phase 4–5 — interactive components and unlimited sandbox
 
-Phase 4 makes several previously placeholder-like parts perform distinct actions:
+The project is an unlimited creative construction sandbox. There are no batteries, fuel, charging, energy costs, or resource requirements. Mechanical actuators are controlled directly from their inspector or by logic signals.
 
-- DISPLAY and PROBE draw a live numeric readout on their module face while the simulation runs
-- SWITCH is a latched input; BUTTON is now a momentary pulse input
-- BATTERY supplies an adjustable voltage; GENERATOR produces voltage from nearby rotating machinery
-- RESISTOR calculates current from incoming voltage and its configured resistance; RELAY gates its voltage output with CONTROL
-- LIGHT sensor measures nearby active LAMP outputs; DISTANCE and ROTATION provide numeric scene readings; COLLISION reports nearby body contact
-- MOTOR accepts a SPEED signal, while meshed MOTOR/GEAR and GEAR/GEAR pairs transfer opposite-direction rotation
-- SPRING responds to its LOAD input; existing piston, wheel, servo, hinge, gravity, and body collision behaviors remain in place
-- GEAR can be manually enabled and adjusted from its inspector
+- DISPLAY and PROBE show live numeric signal readouts
+- SWITCH is a latched input; BUTTON is a momentary pulse input
+- RELAY is a signal-controlled logic gate, not an electrical power component
+- Motors, gears, servos, pistons, hinges, springs, and wheels have distinct mechanical behaviors
+- THRUSTER applies force to its own body in its facing direction
+- MAGNET attracts nearby physical bodies, with a REPEL signal to reverse the force
+- GRABBER clamps onto a nearby body, carries it, and releases it when disabled or given a RELEASE signal
+- CONVEYOR pushes bodies across its belt in the direction it faces
+- FAN blows nearby bodies away in a forward airflow cone
+- Sensors report distance, light level, rotation, and collision state
+- Mechanical modules have their own visual treatment, adjustable behavior values, and direct activation controls
 
-To see live behavior, wire the relevant named output/input ports, then press Play or Step. For example, connect BATTERY VOLTAGE → RESISTOR VOLTAGE and connect RESISTOR CURRENT → DISPLAY IN. Enable a MOTOR beside a GEAR to see the gear counter-rotate. Turn on a LAMP near a LIGHT sensor to see its reading rise.
+### Phase 5 experiments
 
-The physics and circuit systems are still deliberately lightweight. This is not a precision electrical circuit solver or a full rigid-body engineering engine; gear meshing is proximity-based and the 2D collision solver remains simplified.
+1. Attach a THRUSTER to a frame with a hinge or anchor and activate it to propel the assembly.
+2. Place a MAGNET near loose weights and activate it; send a positive REPEL signal to push them away instead.
+3. Activate a GRABBER near a weight, move the grabber assembly, then deactivate it to drop the weight.
+4. Place a CONVEYOR under loose objects and activate it to move them along the belt.
+5. Aim a FAN at a group of loose objects and activate it to scatter them.
+6. Wire a SWITCH or BUTTON to an actuator's ENABLE input to control it without manually toggling the inspector.
+
+To run a simulation, press Play or Step. Some mechanisms need to be mounted to an ANCHOR or attached to a frame if you want them to stay in place while acting on other objects.
+
+## Controls
+
+| Action | Control |
+|---|---|
+| Select | V |
+| Connect nodes | C |
+| Pan | Space + drag or middle mouse |
+| Zoom | Mouse wheel |
+| Multi-select | Shift + click |
+| Copy / paste | Ctrl/Cmd + C / V |
+| Duplicate | Ctrl/Cmd + D |
+| Undo / redo | Ctrl/Cmd + Z / Y |
+| Rotate selection | R |
+| Delete | Delete / Backspace |
+| Cancel connection | Escape |
+
+## Notes
+
+The physics model is a lightweight 2D sandbox rather than a precision engineering solver. Collision geometry and some mechanical constraints are simplified; gear meshing and several actuator interactions are approximations intended for creative experimentation. The logic wires carry control values, not electrical energy. Projects and blueprints are stored locally in the browser; export JSON files to back them up or move them between browsers.

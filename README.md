@@ -160,3 +160,13 @@ The solver remains a lightweight 2D approximation. Motor-shaft links, rope tensi
 - Connector and attachment settings are stored in project data and continue to work with local autosave and JSON export.
 
 The solver remains an approximate 2D sandbox solver. Attachment points and force transfer are improved, but this is not a finite-element or precision multibody simulation.
+
+
+## Phase 10 — configurable connections and creative mechanisms
+
+- Connected springs, ropes, and rigid links can be configured from either attached part's inspector. Spring settings include rest length, stiffness, and damping; rope and rigid-link settings include rest length. Zero damping is supported.
+- **DECOUPLER** automatically holds the nearest body in front of it while its TRIGGER is 0, then releases it when TRIGGER becomes 1. Set its capture range in the inspector. It is useful for payload bays, traps, launch gates, and staged contraptions.
+- **BUMPER** kicks an approaching body away from its facing direction on contact. **SPRINGBOARD** launches bodies upward when they land on it. Both have configurable interaction range and distinct physical behavior; they use cooldowns to avoid applying continuous force every frame.
+- Existing GRABBER remains the powered grab-and-release tool. All new mechanisms are physical bodies and can be attached to beams, frames, pins, and other parts using the connector system.
+
+As elsewhere in this project, these are lightweight game-physics approximations rather than precision engineering simulations.

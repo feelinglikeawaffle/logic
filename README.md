@@ -117,3 +117,13 @@ The physics model is a lightweight 2D sandbox rather than a precision engineerin
 4. Join two weights with a spring and observe the damping as they settle after being disturbed.
 
 The physics remains a lightweight 2D creative solver. Welds and collision geometry are approximations, not a precision rigid-body engine; highly complex or very fast assemblies may still show some jitter.
+
+## Phase 7 — stable zoom, pinned parts, and connectors
+
+- Component glyphs, names, and connection-node markers now keep a consistent screen size while the canvas zooms; the component bodies still scale with the world.
+- Physical parts have a **Physics simulation enabled** toggle in the inspector. Turn it off to pin that part in place and make it immovable by gravity, collisions, joints, and actuator forces. ANCHOR and PIN start with physics disabled.
+- Added a **PIN** structure part for a fixed attachment point.
+- ROPE and SPRING are connectors between two selected physical parts, not standalone blocks. Shift-click two parts and choose **Connect with rope** or **Connect with spring**. A rope goes slack when the parts are closer than its length and becomes taut when stretched; a spring pulls toward its resting length and includes damping.
+- The old SPRING block remains supported when loading older projects, but it is no longer offered as a new library component.
+
+The physics toggle and connector settings are stored with project objects and joints. The 2D physics solver remains approximate, so complex assemblies may still show some jitter.

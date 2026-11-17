@@ -127,3 +127,24 @@ The physics remains a lightweight 2D creative solver. Welds and collision geomet
 - The old SPRING block remains supported when loading older projects, but it is no longer offered as a new library component.
 
 The physics toggle and connector settings are stored with project objects and joints. The 2D physics solver remains approximate, so complex assemblies may still show some jitter.
+
+## Phase 8 — simple controls and physical mechanisms
+
+- Mechanical actuators use clear binary trigger inputs: **0 = off, 1 = on**. Motors, pistons, thrusters, fans, conveyors, magnets, grabbers, wheels, and launchers no longer expose confusing numeric output ports. Their speed, force, range, or target values are configured on the part itself.
+- Added a **ROCKET LAUNCHER**. Connect a SWITCH or other logic output to its TRIGGER input. Each rising edge (0 to 1) launches a physical rocket in the direction the launcher faces. Rocket speed is configurable in the inspector.
+- Sensors now report simple binary detections: distance detects a nearby body, light detects an illuminated lamp, rotation detects a moving mechanism, and collision detects a nearby body. The distance sensor's range is configurable.
+- **Attach to motor shaft** is available when two physical parts are selected and one is a MOTOR. Select the motor and the part to attach; the attached part rotates around the motor shaft as the motor spins. Use a weld to mount the motor housing to a frame first.
+- Rope and spring are physical connectors, not library blocks. Select two parts and create a **Rope connector** or **Spring connector**. Ropes hang slack when short and pull taut at their saved length; springs are drawn as coils and pull toward their rest length with damping.
+- The inspector labels control inputs as 0/1 and explains that 0 is off and 1 is on. Actuator settings stay on the actuator rather than being encoded as extra signal inputs.
+
+### Quick mechanism setup
+
+1. Place a SWITCH and a MOTOR.
+2. Connect SWITCH OUT to MOTOR TRIGGER.
+3. Mount the motor body to a FRAME with a weld.
+4. Place an arm or wheel where you want it, shift-select the MOTOR and the part, then choose **Attach to motor shaft**.
+5. Press Play and toggle the switch. The motor shaft and attached part should rotate together.
+
+For a launcher, connect SWITCH OUT to ROCKET LAUNCHER TRIGGER and press Play. Toggle the switch off and on again to fire another rocket.
+
+The solver remains a lightweight 2D approximation. Motor-shaft links, rope tension, spring forces, and collisions are intended for sandbox building rather than precision engineering simulation.

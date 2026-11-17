@@ -175,7 +175,7 @@ As elsewhere in this project, these are lightweight game-physics approximations 
 ## Phase 11 — pulley routing and connector winches
 
 - Added a **PULLEY** mechanical part that acts as a physical cable guide. Mount it to a frame, beam, pin, or anchor, then select an existing rope or spring connector in the connected-hardware inspector and choose that pulley under **PULLEY GUIDE**. The cable is drawn around the sheave and its tension is solved across both cable spans.
-- Rope and spring connectors can be configured as winches directly from their connector settings. Set reel speed and direction, then enable the winch. The connector's first endpoint supplies its binary **TRIGGER** signal (or use the endpoint's manual actuator control); a manual reel button is also available.
+- Rope, spring, and rigid-link connectors can be configured as winches directly from their connector settings. Set reel speed and direction, then enable the winch. The connector's first endpoint supplies its binary **TRIGGER** signal (or use the endpoint's manual actuator control); a manual reel button is also available.
 - Winches change the connector's actual rest length during simulation, so the cable physically pulls the attached assembly as it reels in and pays out. This is connector hardware, not a separate powered resource system.
 - Pulley routing and winch settings are saved with the joint in project JSON, autosaves, and undo/redo. A pulley can be mounted using the existing weld/hinge connector system; a fixed PIN or ANCHOR is also a suitable support.
 
@@ -185,6 +185,6 @@ As elsewhere in this project, these are lightweight game-physics approximations 
 2. Place a PULLEY between the endpoints, mount it to a support, then select either rope endpoint and set its **PULLEY GUIDE** to that pulley.
 3. Enable the winch on the rope, set direction to **Reel in**, and connect a SWITCH to the first endpoint's TRIGGER input. Toggle the switch to shorten the cable.
 4. Use **Pay out** to reverse the reel direction, or press **Reel manually** to test without logic wiring.
-5. Try the same winch controls on a spring connector for a retracting tension line.
+5. Try the same winch controls on a spring or rigid-link connector for retracting tension lines or adjustable-length struts.
 
 The pulley solver is intentionally lightweight: a guided cable is approximated as two tension spans meeting at one guide, rather than a full multi-sheave rope solver. Complex cable routing and precise pulley torque are future refinements.

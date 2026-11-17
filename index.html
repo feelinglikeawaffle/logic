@@ -71,7 +71,7 @@
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id), canvas=$('world'),ctx=canvas.getContext('2d');
-const COLORS={logic:'#6ca9e8',input:'#61c9a7',output:'#e5b66f',mechanical:'#b99ae8',electrical:'#e5a66e',sensor:'#e48cb4',structure:'#8e9baa',custom:'#8bd1c0'};
+const COLORS={logic:'#6ca9e8',input:'#61c9a7',output:'#e5b66f',mechanical:'#b99ae8',sensor:'#e48cb4',structure:'#8e9baa',custom:'#8bd1c0'};
 const CATALOG=[
 {cat:'Logic',items:[['AND','∧','Two inputs true','and',['A','B'],['OUT']],['OR','∨','Either input true','or',['A','B'],['OUT']],['NOT','¬','Inverts input','not',['IN'],['OUT']],['XOR','⊕','Exclusive OR','xor',['A','B'],['OUT']],['NAND','⊼','Inverted AND','nand',['A','B'],['OUT']],['NOR','⊽','Inverted OR','nor',['A','B'],['OUT']],['XNOR','≡','Equality gate','xnor',['A','B'],['OUT']],['BUFFER','▷','Passes signal','buffer',['IN'],['OUT']],['SR LATCH','S/R','Set-reset memory','latch',['SET','RESET'],['Q','NOT Q']],['D FLIP-FLOP','D','Stores on clock edge','dff',['D','CLK'],['Q','NOT Q']],['MUX','MUX','Selects an input','mux',['A','B','SEL'],['OUT']],['DEMUX','DMX','Routes a signal','demux',['IN','SEL'],['A','B']],['COUNTER','#','Counts clock edges','counter',['CLK','RESET'],['Q']],['CLOCK','◷','Repeating pulse source','clock',[],['OUT']],['RELAY','▣','Signal-controlled logic gate','relay',['CONTROL','IN'],['OUT']]]},
 {cat:'Inputs & outputs',items:[['SWITCH','◉','Toggleable 0 / 1 input','switch',[],['OUT']],['BUTTON','●','Momentary input','button',[],['OUT']],['CONSTANT','1','Fixed numeric value','constant',[],['OUT']],['DISPLAY','▤','Shows incoming value','display',['IN'],[]],['LAMP','◉','Visual boolean output','lamp',['IN'],[]],['PROBE','⌖','Inspect a signal','probe',['IN'],[]]]},

@@ -6,7 +6,7 @@ A browser-based, top-down 2D engineering sandbox. The first playable foundation 
 
 Open `index.html` in a modern browser, or enable GitHub Pages for the repository and publish from the `main` branch root. No build step, server, account, or external dependency is required.
 
-## Phase 1 + Phase 2 features
+## Phase 1–3 features
 
 - Infinite-feeling pan/zoom canvas with grid and snap controls
 - Compact, searchable component library with logic, I/O, mechanical, electrical, sensor, structure, and computing categories
@@ -17,6 +17,12 @@ Open `index.html` in a modern browser, or enable GitHub Pages for the repository
 - Working Boolean gates: AND, OR, NOT, XOR, NAND, NOR, XNOR, BUFFER
 - Multi-pass signal propagation so connected combinational logic settles through longer chains within a simulation tick
 - DEMUX signal routing
+- Dynamic 2D physics with gravity, a ground plane, mass, bounce, friction, and basic body-to-body collision response
+- Powered motors and gears with adjustable rotational speed
+- Servo angle control, powered pistons with extension and pushing force, driven wheels, and free-spinning hinges
+- Select two physical parts to create a hinge pivot or spring link; links are drawn on the canvas and saved in project JSON
+- Physics toggle in the simulation toolbar; actuator power, mass, bounce, and target/speed settings in the inspector
+- Distance, rotation, and collision sensors can read the physical scene
 - Basic stateful / utility components: switches, buttons, constants, clocks, SR latch, D flip-flop, counter, mux, adder, comparator, register, memory, relay, lamp, display, and probe
 - Simulation play/pause, fixed-step advance, reset, and speed choices from 0.1× to 10×
 - Undo/redo, copy/paste, duplicate, and keyboard shortcuts
@@ -43,6 +49,6 @@ Open `index.html` in a modern browser, or enable GitHub Pages for the repository
 
 ## Notes
 
-Phase 2 strengthens the editor and digital-logic runtime. Mechanical physics, circuit-level electrical solving, advanced computing simulation, and fully encapsulated custom-component execution remain future systems. The custom component library and reusable blueprint workflow are early foundations, not yet a full nested-subcircuit runtime.
+Phase 3 adds a lightweight 2D rigid-body layer for construction experiments. It is a creative sandbox physics model rather than a precision engineering solver: collision geometry is simplified, hinge joints are pivot constraints, and electrical circuit solving, advanced computing simulation, and fully encapsulated custom-component execution remain future systems. The custom component library and reusable blueprint workflow are early foundations, not yet a full nested-subcircuit runtime.
 
 Projects and blueprints are stored locally in the browser. Export JSON files to back up or move work between browsers.

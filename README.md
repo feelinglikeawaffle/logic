@@ -99,3 +99,21 @@ To run a simulation, press Play or Step. Some mechanisms need to be mounted to a
 ## Notes
 
 The physics model is a lightweight 2D sandbox rather than a precision engineering solver. Collision geometry and some mechanical constraints are simplified; gear meshing and several actuator interactions are approximations intended for creative experimentation. The logic wires carry control values, not electrical energy. Projects and blueprints are stored locally in the browser; export JSON files to back them up or move them between browsers.
+
+
+## Phase 6 — connected machine assemblies
+
+- Added **rigid weld joints** alongside hinges and springs. Select two physical parts and use “Rigidly weld together” to lock their relative position and orientation while the simulation runs.
+- Welds preserve the relative angle as well as the joint anchor, so a welded frame, motor, thruster, or other part behaves more like one assembly.
+- Spring links now include velocity damping to reduce endless oscillation and make linked mechanisms settle more naturally.
+- Improved body-to-body collision response with tangential friction and a small rotational response, so impacts transfer a little more motion instead of only sliding blocks apart.
+- Joint types have distinct canvas styling, and all joint data continues to be saved in project JSON, local autosaves, undo/redo, and blueprints where applicable.
+
+### Phase 6 experiments
+
+1. Shift-click a FRAME and MOTOR, then choose **Rigidly weld together**. The motor now rides with the frame as one rigid assembly.
+2. Weld a THRUSTER to a frame, then activate it. The entire welded construction should accelerate together.
+3. Connect a moving arm to a fixed ANCHOR with a hinge, then attach a second part to the arm with a weld.
+4. Join two weights with a spring and observe the damping as they settle after being disturbed.
+
+The physics remains a lightweight 2D creative solver. Welds and collision geometry are approximations, not a precision rigid-body engine; highly complex or very fast assemblies may still show some jitter.

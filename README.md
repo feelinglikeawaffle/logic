@@ -52,3 +52,20 @@ Open `index.html` in a modern browser, or enable GitHub Pages for the repository
 Phase 3 adds a lightweight 2D rigid-body layer for construction experiments. It is a creative sandbox physics model rather than a precision engineering solver: collision geometry is simplified, hinge joints are pivot constraints, and electrical circuit solving, advanced computing simulation, and fully encapsulated custom-component execution remain future systems. The custom component library and reusable blueprint workflow are early foundations, not yet a full nested-subcircuit runtime.
 
 Projects and blueprints are stored locally in the browser. Export JSON files to back up or move work between browsers.
+
+## Phase 4 — component behaviors and machine interaction
+
+Phase 4 makes several previously placeholder-like parts perform distinct actions:
+
+- DISPLAY and PROBE draw a live numeric readout on their module face while the simulation runs
+- SWITCH is a latched input; BUTTON is now a momentary pulse input
+- BATTERY supplies an adjustable voltage; GENERATOR produces voltage from nearby rotating machinery
+- RESISTOR calculates current from incoming voltage and its configured resistance; RELAY gates its voltage output with CONTROL
+- LIGHT sensor measures nearby active LAMP outputs; DISTANCE and ROTATION provide numeric scene readings; COLLISION reports nearby body contact
+- MOTOR accepts a SPEED signal, while meshed MOTOR/GEAR and GEAR/GEAR pairs transfer opposite-direction rotation
+- SPRING responds to its LOAD input; existing piston, wheel, servo, hinge, gravity, and body collision behaviors remain in place
+- GEAR can be manually enabled and adjusted from its inspector
+
+To see live behavior, wire the relevant named output/input ports, then press Play or Step. For example, connect BATTERY VOLTAGE → RESISTOR VOLTAGE and connect RESISTOR CURRENT → DISPLAY IN. Enable a MOTOR beside a GEAR to see the gear counter-rotate. Turn on a LAMP near a LIGHT sensor to see its reading rise.
+
+The physics and circuit systems are still deliberately lightweight. This is not a precision electrical circuit solver or a full rigid-body engineering engine; gear meshing is proximity-based and the 2D collision solver remains simplified.

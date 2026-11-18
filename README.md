@@ -190,12 +190,12 @@ As elsewhere in this project, these are lightweight game-physics approximations 
 The pulley solver is intentionally lightweight: a guided cable is approximated as two tension spans meeting at one guide, rather than a full multi-sheave rope solver. Complex cable routing and precise pulley torque are future refinements.
 
 
-## Phase 12 — connector drawer and cable collisions
+## Phase 12 — simple connector drawer and cable handling
 
-- Added a compact **Connectors** drawer on the canvas. Choose Rope/Cable, Spring, Rigid Link/Strut, Hinge, or Rigid Weld without needing to open the inspector first.
-- With the drawer's Shift-click mode enabled, hold **Shift** and click the first physical part, then Shift-click the second. The chosen connector is created automatically. Existing inspector connection tools and attachment-node controls remain available.
-- Rope, spring, and rigid-link connectors now collide with physical bodies as capsule-like obstacles. Moving blocks are pushed away from connector paths, with a small velocity response, instead of passing straight through the cable or strut.
-- Pulley-routed ropes collide along both spans. The pulley guide itself is excluded from its own cable collision pass.
-- Connector winches now update during physics simulation rather than during drawing, so rendering remains a display-only operation.
+- The Connectors button opens a real slide-out drawer with clear choices: Rope/Cable, Spring, Rigid Link, Hinge, and Rigid Weld.
+- Choose a connector, then click two physical parts on the canvas. No Shift key or inspector setup is required for the basic connection workflow.
+- A rope automatically uses a nearby pulley as its guide when one is placed close to the midpoint between the two parts. The existing pulley-guide selector remains available for manual routing.
+- Connector winches use two simple controls in the connected-hardware inspector: **Reel in / Stop winch** and **Pay out instead**. The winch directly changes the connector length while the simulation runs.
+- Rope, spring, and rigid-link connectors still collide with physical bodies as capsule-like obstacles. Pulley-routed ropes collide along both spans.
 
-The connector collision model is intentionally approximate: it treats each cable/strut segment as a thin capsule and uses a simplified body radius. It is not a full flexible-rope contact solver, and very fast or heavily loaded assemblies may need smaller simulation steps for best results.
+The connector collision model is intentionally approximate: it treats each cable/strut segment as a thin capsule and uses a simplified body radius. Pulley routing currently supports one guide per rope, not a full multi-sheave cable system.

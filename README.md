@@ -199,3 +199,23 @@ The pulley solver is intentionally lightweight: a guided cable is approximated a
 - Rope, spring, and rigid-link connectors still collide with physical bodies as capsule-like obstacles. Pulley-routed ropes collide along both spans.
 
 The connector collision model is intentionally approximate: it treats each cable/strut segment as a thin capsule and uses a simplified body radius. Pulley routing currently supports one guide per rope, not a full multi-sheave cable system.
+
+## Phase 13 — construction kits, marble runs, fluids, and gases
+
+### Construction parts
+- Added a dedicated set of marble-run construction pieces: **Straight Track**, **Curved Track**, **Tube Track**, **Funnel**, **Splitter**, **Track Gate**, and **Support**.
+- Track pieces are fixed in place by default and can be rotated with **R** to create slopes, turns, drops, and branching layouts. Supports give you simple structural legs to build elevated systems.
+- Added a small **Marble** body with its own gravity, rolling movement, track contact, and marble-to-marble collisions. Track channels and gates use dedicated contact geometry rather than treating the entire piece as a solid rectangular block.
+- **Track Gate** can be activated/deactivated from its inspector to hold or release a marble.
+
+### Dynamic fluids and gases
+- Added **Water Source**, **Heater**, **Cooler**, and **Gas Vent** parts.
+- Water sources emit individual moving droplets. Droplets fall, interact with nearby water, collide with track surfaces and fixed construction, and collect in low areas.
+- Heaters transfer heat to nearby droplets. Water above the boiling threshold changes into visible **steam**, which rises and spreads.
+- Steam cools toward ambient temperature and condenses back into water droplets. Coolers accelerate that process.
+- Gas vents emit a separate buoyant gas that rises, diffuses, and eventually disperses.
+- Source rates and heater/cooler strength can be adjusted in the inspector. Fluids are simulated only while the physics simulation is enabled.
+- Fluid particles are included in local autosaves, undo snapshots, and exported/imported project JSON. Older projects without fluid data continue to load.
+
+### Scope and performance
+This is a lightweight particle-based sandbox simulation, not a computational fluid dynamics solver. Water is represented by interacting droplets, steam and gas by buoyant particles, and track contact by simplified segment constraints. The particle count is capped to keep the browser responsive. Complex fluid pressure, realistic turbulence, sealed-gas thermodynamics, and fully continuous liquid surfaces remain future improvements.

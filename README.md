@@ -358,3 +358,22 @@ Block geometry is drawn in world units and scaled once by camera zoom. Glyphs an
 - Added a **Rotor** to the fresh parts browser. Activate it to spin and apply configurable rotational torque to its connected machine. Spin speed and torque are configurable in Machine Tuner.
 
 These are still approximate 2D sandbox mechanisms. The changes were syntax-checked, but need in-browser gameplay testing for feel and edge cases.
+
+
+## Expanded Machine Tuner and stronger construction
+
+Machine Tuner now exposes more useful physical dimensions and output controls for the components that use them:
+
+- **Piston:** extension length, extension speed, and push power.
+- **Rotor:** rotor radius, spin speed, and rotational power / torque.
+- **Engine:** thrust power, turning torque, throttle response, and maximum speed.
+- **Wheel:** radius, drive torque, grip, rolling resistance, and wheel speed.
+- **Suspension:** travel length, spring rate, damping, and preload.
+- **Steering:** steering angle, steering speed, steering power, and centering speed.
+- **Propeller:** diameter, thrust power, efficiency, and speed limit.
+
+Automatic face-to-face block connections are now rigid reinforced welds instead of flexible joints. Existing saved automatic grid joints are upgraded to the stronger connection behavior when loaded. The fresh construction focus no longer includes flexible-frame bending as a core mechanic.
+
+Block tiles now use layered shading and component-specific accent detailing. Component artwork is drawn in a consistent local coordinate space and scaled as a whole with the camera, reducing zoom-dependent shape distortion. Wheel and propeller artwork also reflects their configured dimensions.
+
+The changes were JavaScript syntax-checked; the physics feel and visual appearance still need live browser testing.

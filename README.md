@@ -291,7 +291,7 @@ The construction model is now a simple square-tile builder inspired by physics-b
 
 - Every part is placed on a **32 × 32 world grid** as a square block tile. Parts no longer need to be positioned by eye.
 - Place a block beside another block and the game automatically creates a hidden rigid weld between their touching faces. There are no visible attachment nodes or manual weld steps for ordinary construction.
-- Click any block in a connected machine to select and move the entire welded assembly. Shift-click can add or remove whole assemblies from a selection.
+- Click a block to inspect and activate that individual part; dragging it moves the entire welded assembly. Shift-click can add or remove whole assemblies from a selection.
 - Dragging a machine keeps its blocks aligned to the grid. Press **R** to rotate the selected blocks by 90 degrees.
 - Block-to-block collision is disabled inside the same welded assembly, so adjacent tiles don't push themselves apart.
 - Engines and driven wheels apply forces to their entire welded machine. Rudders apply turning torque to the assembly; propellers and wings also act on the complete connected build.
@@ -302,7 +302,7 @@ The construction model is now a simple square-tile builder inspired by physics-b
 
 1. Place FRAME blocks in a rectangle or long chassis. Each touching block automatically welds to its neighbors.
 2. Place WHEEL blocks on the lower edge of the chassis, adjacent to it.
-3. Place an ENGINE block at the rear or front of the chassis, pointing in the direction you want to travel. Rotate with **R** before placing if needed.
+3. Place an ENGINE block at the rear or front of the chassis. Select it and press **R** to rotate the complete machine by 90 degrees, or use its inspector rotation control when it is not connected yet.
 4. Select the engine and press **Activate mechanism** in the inspector.
 5. Press Play. The engine pushes the complete welded vehicle; the wheels provide driven traction when activated.
 6. Add ARMOR, FLOATS, PROPELLERS, WINGS, or weapons as additional grid blocks.

@@ -249,3 +249,37 @@ The fluid and gas particle system has been removed. Existing saved projects are 
 - Hilly and mountainous worlds draw a procedural terrain profile and use terrain height in the ground collision response. Objects also gain a small downhill acceleration from the terrain slope.
 - The interface now uses a near-black, monochrome palette with white text, grayscale controls, subtle hover/press transitions, and animated menu entry.
 - The Worlds button returns to the world menu. Starting a new world preserves a local backup of the previously saved world under a separate browser-storage key.
+
+
+## Machine-building gameplay overhaul
+
+The sandbox is now centered on building physical machines from blocks rather than designing logic circuits. The visual style, world-generation presentation, and existing construction workflow remain in place.
+
+### New machine-building parts
+
+- **Structure & armor:** frames, beams, weights, armor plates, anchors, pins, and the existing marble-run construction kit.
+- **Drive & propulsion:** engines for forward thrust, motors for rotating shafts and torque, gears, wheels, propellers, thrusters, wings for lift, rudders for steering, pistons, servos, and pulleys.
+- **Water & handling:** floats for buoyancy, ballast for sinking / trim, grabbers, decouplers, conveyors, fans, and magnets.
+- **Weapons:** cannons, rapid-fire machine guns, rocket pods, bomb bays, and harpoons, alongside bumpers and springboards.
+- **Controls:** simple switches and buttons remain available for basic trigger wiring. Most mechanisms can also be activated directly from their inspector.
+
+### Ocean world
+
+- Added **2D Ocean** to the world menu.
+- The ocean has a visible waterline, an underwater region, and a deep seafloor.
+- Objects experience underwater drag and buoyancy; FLOAT parts rise more strongly while BALLAST parts sink.
+- PROPELLER thrust is strongest underwater and much weaker in air, encouraging boats and submarines.
+- The ocean is a lightweight arcade-style physics environment, not a fluid simulation.
+
+### Machine experiments
+
+1. **Car:** weld a chassis from FRAME and BEAM parts, add WHEEL parts and an ENGINE, then activate the engine.
+2. **Aircraft:** build a light frame, add WINGS and a rear THRUSTER, and tune the wing and thrust angles.
+3. **Boat:** build a wide hull, attach FLOAT parts, and use rear-facing PROPELLERS for water movement.
+4. **Submarine:** add BALLAST to sink, PROPELLERS to move, and RUDDERS to steer.
+5. **Armored vehicle:** reinforce a frame with ARMOR, add wheels and an engine, then mount a CANNON or ROCKET POD.
+6. **Weapons test rig:** mount a CANNON, MACHINE GUN, ROCKET POD, BOMB BAY, or HARPOON and activate it from the inspector.
+
+### Simulation scope
+
+This is an early machine-physics pass. Engines, wings, rudders, propellers, buoyancy, and weapons use simple force-based approximations. Welded assemblies are the intended way to make separate blocks behave as one machine. The current weapon projectiles are physical moving objects; advanced damage, explosions, target health, and full rope-tethered harpoon behavior are not implemented yet. Complex assemblies may still need further physics tuning.

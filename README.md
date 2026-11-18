@@ -240,3 +240,12 @@ The fluid and gas particle system has been removed. Existing saved projects are 
 4. Select a part to edit its settings in the inspector.
 5. Open **Connectors**, choose a connector, then click the two physical parts to join.
 6. Press **Play** to run the construction; use **Step** to advance one simulation step.
+
+
+## World selection and monochrome UI overhaul
+
+- Added a dedicated startup world menu with **Continue building** and three new-world presets: **2D Flat**, **2D Hilly**, and **2D Mountainous**.
+- World terrain type is stored in local saves and exported project files. Older projects without a terrain field continue to load as flat worlds.
+- Hilly and mountainous worlds draw a procedural terrain profile and use terrain height in the ground collision response. Objects also gain a small downhill acceleration from the terrain slope.
+- The interface now uses a near-black, monochrome palette with white text, grayscale controls, subtle hover/press transitions, and animated menu entry.
+- The Worlds button returns to the world menu. Starting a new world preserves a local backup of the previously saved world under a separate browser-storage key.

@@ -377,3 +377,14 @@ Automatic face-to-face block connections are now rigid reinforced welds instead 
 Block tiles now use layered shading and component-specific accent detailing. Component artwork is drawn in a consistent local coordinate space and scaled as a whole with the camera, reducing zoom-dependent shape distortion. Wheel and propeller artwork also reflects their configured dimensions.
 
 The changes were JavaScript syntax-checked; the physics feel and visual appearance still need live browser testing.
+
+
+## Anchors, collision layers, and physical connectors
+
+- Added **PIN** to the current building-block catalog. A pin is a fixed world anchor: any blocks rigidly welded to it stay suspended at that location instead of falling. Adjacent blocks continue to auto-weld, so no extra attachment step is needed.
+- Added four per-block **collision layers** in the inspector (Layer 0–3). Blocks on different layers pass through each other; blocks on the same layer still collide. Ground and terrain contact remain active on every layer. Existing saves and imported projects default to Layer 0.
+- The **Connectors** drawer now has a working two-click placement flow. Choose Rope/Cable, Spring, Rigid Link, Hinge, or Rigid Weld, then click the two endpoint blocks. Escape cancels connector placement.
+- Connector endpoints automatically attach near the facing edges of the selected blocks, rather than hiding at their centers.
+- **Ropes** only pull when stretched and hang slack; **springs** push and pull with stiffness and damping; **hinges** keep a shared pivot while allowing rotation. These are saved joint records rendered as live lines and pivots, not placeable blocks.
+- Rope, spring, and hinge lines now collide with other bodies on the connected layers. Their visible line weight responds to tension. Blocks belonging to the connector's own attached assembly are excluded to avoid self-collision jitter.
+- The simulation remains an approximate 2D physics solver; complex multi-joint mechanisms still need browser playtesting.

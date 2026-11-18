@@ -310,3 +310,40 @@ The construction model is now a simple square-tile builder inspired by physics-b
 ### Current physics scope
 
 Welded assemblies share movement through face-to-face constraints and group force / torque application. This is a lightweight 2D arcade physics implementation rather than a full rigid-body solver: complex high-speed collisions, very large assemblies, and intricate multi-joint mechanisms still need further tuning and browser playtesting.
+
+
+## Fresh vehicle-building parts and Machine Tuner
+
+The main parts browser has been reset to a small starter set of useful vehicle components:
+
+- **Chassis** — the basic structural tile.
+- **Strut** — rigid diagonal reinforcement. Ordinary touching blocks connect with flexible face joints; connections involving a strut are rigidly braced.
+- **Engine** — pushes the connected machine. An active engine also drives connected wheels.
+- **Wheel** — ground traction with configurable torque, grip, radius, speed, and rolling resistance.
+- **Suspension** — spring-and-damper behavior between a connected chassis and wheel.
+- **Steering** — turns connected wheels while active and returns them toward center when inactive.
+- **Float** — adjustable buoyancy and water drag.
+- **Propeller** — adjustable thrust and efficiency, with stronger propulsion underwater.
+
+### Mod Browser: Machine Tuner
+
+Open **Mods → Machine Tuner** to configure the selected block and every supported component in its connected assembly. The tuner provides slider and numeric controls for:
+
+- General mass, surface friction, and bounce.
+- Engine thrust, torque, throttle response, and speed limit.
+- Wheel torque, grip, radius, maximum wheel speed, and rolling resistance.
+- Suspension spring rate, damping, travel, and preload.
+- Steering angle, response, and centering speed.
+- Float buoyancy and water drag.
+- Propeller thrust, efficiency, and speed limit.
+- Chassis stiffness and strut reinforcement strength.
+
+The regular inspector remains focused on selecting, activating, positioning, and rotating blocks. Advanced tuning lives in the mod rather than cluttering the normal build workflow.
+
+### Flexible block joints
+
+Touching construction blocks automatically connect. Ordinary grid joints hold neighboring blocks together while allowing relative rotation, so an unbraced frame can flex. A strut creates a rigid connection at its touching faces and helps brace the assembly. This is a lightweight joint approximation, not a full deformable-material solver.
+
+### Zoom and block readability
+
+Block geometry is drawn in world units and scaled once by camera zoom. Glyphs and labels use bounded screen-readable font sizes, while wheel artwork stays inside its square tile. The canvas grid and parts use the same 32-unit spacing.

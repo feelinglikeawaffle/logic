@@ -208,14 +208,15 @@ The connector collision model is intentionally approximate: it treats each cable
 - Added a small **Marble** body with its own gravity, rolling movement, track contact, and marble-to-marble collisions. Track channels and gates use dedicated contact geometry rather than treating the entire piece as a solid rectangular block.
 - **Track Gate** can be activated/deactivated from its inspector to hold or release a marble.
 
-### Dynamic fluids and gases
-- Added **Water Source**, **Heater**, **Cooler**, and **Gas Vent** parts.
-- Water sources emit individual moving droplets. Droplets fall, interact with nearby water, collide with track surfaces and fixed construction, and collect in low areas.
-- Heaters transfer heat to nearby droplets. Water above the boiling threshold changes into visible **steam**, which rises and spreads.
-- Steam cools toward ambient temperature and condenses back into water droplets. Coolers accelerate that process.
-- Gas vents emit a separate buoyant gas that rises, diffuses, and eventually disperses.
-- Source rates and heater/cooler strength can be adjusted in the inspector. Fluids are simulated only while the physics simulation is enabled.
-- Fluid particles are included in local autosaves, undo snapshots, and exported/imported project JSON. Older projects without fluid data continue to load.
+### Rotation and sizing
+- Every component can be rotated to any angle from **0° through 359°** using the inspector's numeric field or slider.
+- Press **R** to rotate the selected component by 15° at a time.
+- The inspector's **Size** control scales components from **25% to 300%**. Component graphics, signal-port positions, track geometry, attachment offsets, and the main body collision bounds scale with the part.
+
+### Construction kit
+- The marble-run construction pieces remain available: Straight Track, Curved Track, Tube Track, Funnel, Splitter, Track Gate, Support, and Marble.
+- Track pieces remain fixed by default and can be rotated and resized to make slopes, turns, drops, and branching layouts.
+- Marble movement and track contact are lightweight approximations, not a precision engineering solver.
 
 ### Scope and performance
-This is a lightweight particle-based sandbox simulation, not a computational fluid dynamics solver. Water is represented by interacting droplets, steam and gas by buoyant particles, and track contact by simplified segment constraints. The particle count is capped to keep the browser responsive. Complex fluid pressure, realistic turbulence, sealed-gas thermodynamics, and fully continuous liquid surfaces remain future improvements.
+The fluid and gas particle system has been removed. Existing saved projects are still loadable; legacy fluid-source components are ignored during import. The focus is back on mechanical construction, physical parts, and marble-run systems.

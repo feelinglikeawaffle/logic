@@ -388,3 +388,8 @@ The changes were JavaScript syntax-checked; the physics feel and visual appearan
 - **Ropes** only pull when stretched and hang slack; **springs** push and pull with stiffness and damping; **hinges** keep a shared pivot while allowing rotation. These are saved joint records rendered as live lines and pivots, not placeable blocks.
 - Rope, spring, and hinge lines now collide with other bodies on the connected layers. Their visible line weight responds to tension. Blocks belonging to the connector's own attached assembly are excluded to avoid self-collision jitter.
 - The simulation remains an approximate 2D physics solver; complex multi-joint mechanisms still need browser playtesting.
+
+
+### Rigid construction joints
+
+All automatically adjacent construction blocks are now rigid welds, not soft grid links. Legacy grid joints in existing saves are upgraded to rigid welds on load. Weld constraints fully correct positional separation, relative angle, and angular velocity each physics step, so a block attached to a rotor follows the rotor as part of the same rigid assembly instead of lagging or bending away. Hinges, ropes, and springs remain intentionally articulated connector types.

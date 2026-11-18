@@ -169,7 +169,7 @@ button:active{transform:scale(.985)}
   </aside>
   <section class="stage" id="stage">
     <canvas id="world"></canvas>
-    <div id="placementBanner" aria-live="polite"><span id="placementText">Click the canvas to place this part</span><button id="cancelPlacement" type="button">Cancel</button></div>
+    <div id="placementBanner" aria-live="polite"><span id="placementText">Click the grid to place this block</span><button id="cancelPlacement" type="button">Cancel</button></div>
     <button id="connectorDrawerToggle" type="button">⌁ Connectors</button>
     <div id="connectorDrawer" aria-label="Connector drawer">
       <div class="drawer-head"><span>CONNECTORS</span><button id="connectorClose" type="button">×</button></div>
@@ -183,15 +183,15 @@ button:active{transform:scale(.985)}
     </div>
     <div class="canvas-hud"><span class="hud-chip" id="terrainLabel">FLAT WORLD</span><span class="hud-chip" id="zoomLabel">100%</span><span class="hud-chip" id="objectLabel">0 objects</span><span class="hud-chip" id="toolLabel">SELECT</span></div>
     <div class="canvas-tools"><button id="zoomOut">−</button><button id="zoomIn">＋</button><button id="centerBtn">◎</button></div>
-    <div class="empty-hint" id="emptyHint"><strong>Build something</strong><span class="empty-steps"><span><b>1</b> Pick a part</span><span><b>2</b> Click the canvas</span><span><b>3</b> Drag to move</span></span><small>Scroll to zoom · Space + drag to pan · Esc to cancel</small></div>
-    <div class="mobile-tabs"><button id="mobileParts">Components</button><button id="mobileInspect">Inspector</button></div>
+    <div class="empty-hint" id="emptyHint"><strong>Build a machine</strong><span class="empty-steps"><span><b>1</b> Pick a block</span><span><b>2</b> Place it on the grid</span><span><b>3</b> Add blocks beside it</span></span><small>Touching blocks weld automatically · Drag any block to move its whole machine · R rotates</small></div>
+    <div class="mobile-tabs"><button id="mobileParts">Parts</button><button id="mobileInspect">Inspector</button></div>
   </section>
   <aside class="inspector" id="inspector">
     <div class="panel-head"><span>INSPECTOR</span><button id="closeInspector" class="tiny">×</button></div>
-    <div class="panel-content" id="inspectorContent"><div class="muted">Select a component to inspect its properties and connection nodes.</div></div>
+    <div class="panel-content" id="inspectorContent"><div class="muted">Select a block to inspect its settings and activate it.</div></div>
   </aside>
 </main>
-<footer class="statusbar"><span id="simStatus">● PAUSED</span><span id="simTime">0.000 s</span><span id="wireStatus">0 connections</span><span id="saveStatus">Local autosave ready</span><span class="right" id="coords">x: 0 · y: 0</span></footer>
+<footer class="statusbar"><span id="simStatus">● PAUSED</span><span id="simTime">0.000 s</span><span id="wireStatus">0 blocks</span><span id="saveStatus">Local autosave ready</span><span class="right" id="coords">x: 0 · y: 0</span></footer>
 </div>
 <div id="worldMenu" class="world-menu" aria-label="World menu"><div class="world-menu-inner"><div class="menu-brand">MACHINE LAB</div><div class="menu-kicker">2D MACHINE SANDBOX</div><h1>Build anything.</h1><p class="menu-sub">Build machines from physical blocks. Drive, fly, float, dive, steer, and test what you create.</p><button id="continueWorld" class="continue-world">Continue building <span>→</span></button><div class="menu-divider"><span>OR CREATE A NEW WORLD</span></div><div class="world-options"><button class="world-option" data-world="flat"><span class="terrain-preview flat-preview"></span><span class="world-option-text"><b>2D Flat</b><small>A clean, level world. Perfect for precise builds.</small></span><span class="option-arrow">→</span></button><button class="world-option" data-world="hilly"><span class="terrain-preview hilly-preview"></span><span class="world-option-text"><b>2D Hilly</b><small>Rolling hills, dips, and changing slopes.</small></span><span class="option-arrow">→</span></button><button class="world-option" data-world="mountainous"><span class="terrain-preview mountain-preview"></span><span class="world-option-text"><b>2D Mountainous</b><small>Steep peaks, valleys, and rugged terrain.</small></span><span class="option-arrow">→</span></button><button class="world-option" data-world="ocean"><span class="terrain-preview ocean-preview"></span><span class="world-option-text"><b>2D Ocean</b><small>Build boats, submarines, amphibious machines, and underwater weapons.</small></span><span class="option-arrow">→</span></button></div><div class="menu-foot">Your builds autosave locally. You can export or import worlds anytime.</div></div></div>
 <div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-head"><span id="modalTitle">Blueprint library</span><button id="modalClose">×</button></div><div class="modal-body" id="modalBody"></div><div class="modal-foot" id="modalFoot"><button id="modalCancel">Close</button></div></div></div>
@@ -272,7 +272,7 @@ for(const o of state.objects){const p=worldToScreen(o.x,o.y),d=def(o.type),selec
 }
 if(drag?.kind==='select'&&drag.moved){const a=worldToScreen(drag.start.x,drag.start.y),b=worldToScreen(drag.current.x,drag.current.y);ctx.strokeStyle='#72b5ff';ctx.fillStyle='#4b91d21a';ctx.setLineDash([5,4]);ctx.fillRect(a.x,a.y,b.x-a.x,b.y-a.y);ctx.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);ctx.setLineDash([]);}
 if(wireStart){const p=worldToScreen(wireStart.x,wireStart.y);ctx.beginPath();ctx.arc(p.x,p.y,8,0,Math.PI*2);ctx.strokeStyle='#f3c477';ctx.lineWidth=2;ctx.stroke();}
-ctx.restore();$('zoomLabel').textContent=Math.round(z*100)+'%';$('objectLabel').textContent=state.objects.length+' objects';$('toolLabel').textContent=state.tool.toUpperCase();$('emptyHint').style.display=state.objects.length?'none':'block';$('wireStatus').textContent=state.objects.length+' blocks · '+new Set(state.objects.map(o=>mechanicalAssembly(o)[0]?.id||o.id)).size+' assemblies';}
+ctx.restore();$('zoomLabel').textContent=Math.round(z*100)+'%';$('objectLabel').textContent=state.objects.length+' objects';$('toolLabel').textContent=state.tool.toUpperCase();$('emptyHint').style.display=state.objects.length?'none':'block';$('wireStatus').textContent=state.objects.length+' blocks';}
 function roundRect(c,x,y,w,h,r){c.beginPath();c.roundRect(x,y,w,h,r);}
 function addObject(type,x,y){const gx=Math.round(x/32)*32,gy=Math.round(y/32)*32;if(state.objects.some(o=>Math.abs(o.x-gx)<2&&Math.abs(o.y-gy)<2)){toast('That grid cell is occupied');return;}pushHistory();const o=makeObject(type,gx,gy);o.angle=0;o.scale=1;state.objects.push(o);autoWeldNeighbors(o);state.selected=[o.id];refreshUI();render();$('emptyHint').style.display='none';toast(def(type).name+' block placed');}
 function setTool(t){state.tool=t;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===t));$('toolLabel').textContent=t.toUpperCase();canvas.style.cursor=t==='pan'?'grab':t==='connect'?'crosshair':'default';}

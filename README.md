@@ -283,3 +283,30 @@ The sandbox is now centered on building physical machines from blocks rather tha
 ### Simulation scope
 
 This is an early machine-physics pass. Engines, wings, rudders, propellers, buoyancy, and weapons use simple force-based approximations. Welded assemblies are the intended way to make separate blocks behave as one machine. The current weapon projectiles are physical moving objects; advanced damage, explosions, target health, and full rope-tethered harpoon behavior are not implemented yet. Complex assemblies may still need further physics tuning.
+
+
+## Grid-block machine building
+
+The construction model is now a simple square-tile builder inspired by physics-based vehicle-building games:
+
+- Every part is placed on a **32 × 32 world grid** as a square block tile. Parts no longer need to be positioned by eye.
+- Place a block beside another block and the game automatically creates a hidden rigid weld between their touching faces. There are no visible attachment nodes or manual weld steps for ordinary construction.
+- Click any block in a connected machine to select and move the entire welded assembly. Shift-click can add or remove whole assemblies from a selection.
+- Dragging a machine keeps its blocks aligned to the grid. Press **R** to rotate the selected blocks by 90 degrees.
+- Block-to-block collision is disabled inside the same welded assembly, so adjacent tiles don't push themselves apart.
+- Engines and driven wheels apply forces to their entire welded machine. Rudders apply turning torque to the assembly; propellers and wings also act on the complete connected build.
+- The inspector is simplified: select one part to activate it and tune its settings; select multiple blocks to save the assembly as a reusable part or delete it.
+- The previous connector drawer, wire display, visible port nodes, mounting-node selectors, and manual multi-part weld workflow are hidden or removed from the main building flow. Existing saved builds are loaded without logic wires, and adjacent grid blocks are automatically joined when a save is restored.
+
+### Quick vehicle build
+
+1. Place FRAME blocks in a rectangle or long chassis. Each touching block automatically welds to its neighbors.
+2. Place WHEEL blocks on the lower edge of the chassis, adjacent to it.
+3. Place an ENGINE block at the rear or front of the chassis, pointing in the direction you want to travel. Rotate with **R** before placing if needed.
+4. Select the engine and press **Activate mechanism** in the inspector.
+5. Press Play. The engine pushes the complete welded vehicle; the wheels provide driven traction when activated.
+6. Add ARMOR, FLOATS, PROPELLERS, WINGS, or weapons as additional grid blocks.
+
+### Current physics scope
+
+Welded assemblies share movement through face-to-face constraints and group force / torque application. This is a lightweight 2D arcade physics implementation rather than a full rigid-body solver: complex high-speed collisions, very large assemblies, and intricate multi-joint mechanisms still need further tuning and browser playtesting.

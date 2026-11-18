@@ -347,3 +347,14 @@ Touching construction blocks automatically connect. Ordinary grid joints hold ne
 ### Zoom and block readability
 
 Block geometry is drawn in world units and scaled once by camera zoom. Glyphs and labels use bounded screen-readable font sizes, while wheel artwork stays inside its square tile. The canvas grid and parts use the same 32-unit spacing.
+
+
+## Build interaction fixes and new actuators
+
+- The canvas now redraws continuously while paused, so newly placed blocks and edits appear immediately without needing to press Play or Step.
+- Block hit-testing accounts for each part's rotation and scale, improving selection and dragging at different zoom levels.
+- Dragging a block moves that block (or the current multi-selection); **Shift + drag** moves its complete connected machine assembly. This makes it possible to reposition an individual tile without having to move the whole vehicle.
+- Added a **Piston** to the fresh parts browser. Activate it to extend/retract and push nearby objects outside its own connected chassis. Its extension speed and push force are configurable in Machine Tuner.
+- Added a **Rotor** to the fresh parts browser. Activate it to spin and apply configurable rotational torque to its connected machine. Spin speed and torque are configurable in Machine Tuner.
+
+These are still approximate 2D sandbox mechanisms. The changes were syntax-checked, but need in-browser gameplay testing for feel and edge cases.

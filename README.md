@@ -220,3 +220,23 @@ The connector collision model is intentionally approximate: it treats each cable
 
 ### Scope and performance
 The fluid and gas particle system has been removed. Existing saved projects are still loadable; legacy fluid-source components are ignored during import. The focus is back on mechanical construction, physical parts, and marble-run systems.
+
+
+## Quality-of-life and usability overhaul
+
+- Reworked the workspace styling with clearer panel separation, calmer contrast, larger touch targets, and a more consistent visual hierarchy.
+- The parts library is now a clean single-column list that is easier to scan and tap.
+- **Placing parts is now a two-step action:** choose a part in the library, then click the exact spot on the canvas. Parts no longer unexpectedly appear in the middle of the build.
+- A placement prompt tells you what you are placing; use **Cancel** or **Escape** to leave placement mode.
+- The empty canvas gives a short three-step guide for getting started.
+- Connector drawer, inspector, canvas tools, and mobile panels have more consistent spacing and touch-friendly controls.
+- Existing keyboard shortcuts and advanced editing tools remain available.
+
+### Updated basic workflow
+
+1. Open **Components** and choose a part.
+2. Click the desired location on the canvas to place it.
+3. Drag parts to move them. Shift-click to select multiple parts.
+4. Select a part to edit its settings in the inspector.
+5. Open **Connectors**, choose a connector, then click the two physical parts to join.
+6. Press **Play** to run the construction; use **Step** to advance one simulation step.

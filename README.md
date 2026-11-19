@@ -393,3 +393,12 @@ The changes were JavaScript syntax-checked; the physics feel and visual appearan
 ### Rigid construction joints
 
 All automatically adjacent construction blocks are now rigid welds, not soft grid links. Legacy grid joints in existing saves are upgraded to rigid welds on load. Weld constraints fully correct positional separation, relative angle, and angular velocity each physics step, so a block attached to a rotor follows the rotor as part of the same rigid assembly instead of lagging or bending away. Hinges, ropes, and springs remain intentionally articulated connector types.
+
+
+## Welded assembly dragging and locked block connections
+
+- Dragging any block now moves its **entire rigid welded assembly** automatically; Shift is no longer required to move a connected machine together.
+- A multi-selection drag moves the complete welded assemblies represented by the selection.
+- Automatic face-to-face weld joints are kept intact while dragging. Moving a machine no longer deletes its welds and tries to recreate them afterward, preventing connected blocks from coming loose during repositioning.
+- Newly touching blocks are still detected and welded when the assembly is released. Adjacent blocks cannot be dragged or pulled apart individually; move the connected machine as one piece.
+- The changes were JavaScript syntax-checked. Live browser interaction and physics testing are still needed.
